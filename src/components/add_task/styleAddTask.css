@@ -1,0 +1,6 @@
+.addTask{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 100px 0 0 80px;
+}

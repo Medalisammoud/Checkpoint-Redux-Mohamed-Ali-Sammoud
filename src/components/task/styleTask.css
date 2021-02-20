@@ -1,0 +1,36 @@
+.task{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 5px;
+    opacity: 0.6;
+    margin-left: 70px;
+    margin-top: 5px;
+    width: 400px;
+}
+.image img{
+    cursor: pointer;
+    height: 50px;
+    padding: 10px 0;
+}
+
+/* Style the list items */
+li {
+    padding: 10px 8px 10px 10px;
+    list-style-type: none;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.2s;
+  }
+
+.done{
+    text-decoration: line-through red;
+}
+
+.input-edit{
+    border: none;
+    border-bottom: 1px solid rgb(100, 151, 245);
+    margin-top: 10px;
+    width: 250px;
+    height: 30px;
+}
