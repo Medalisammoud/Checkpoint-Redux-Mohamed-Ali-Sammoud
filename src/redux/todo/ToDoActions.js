@@ -1,23 +1,39 @@
-import { Add_NewTodo, Filter_Todo , Edit_Todo} from './ToDotype'
-
+import { ADD_TODO, FILTER_TODO , EDIT_TODO ,DELETE_TODO, EDIT_ISDONE } from './ToDotype'
 
 export const AddNewTodo =(newToDo)=>{
     return {
-        type : Add_NewTodo,
+        type : ADD_TODO,
         payload : newToDo
     }
 }
 
 export const FilterTodo =(isDone)=>{
     return {
-        type : Filter_Todo,
+        type : FILTER_TODO,
         payload : isDone
     }
 }
 
-export const EditTodo = obj =>{
+export const EditTodo = (id,descrp) =>{
     return {
-        type : Edit_Todo,
-        payload : obj
+        type : EDIT_TODO,
+        payload : {
+            id,
+            descrp
+        }
+    }
+}
+
+export const DeleteTodo = id =>{
+    return {
+        type : DELETE_TODO,
+        payload : id
+    }
+}
+
+export const EditIsDone = id =>{
+    return {
+        type : EDIT_ISDONE,
+        payload : id
     }
 }

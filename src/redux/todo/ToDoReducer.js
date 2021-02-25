@@ -1,4 +1,4 @@
-import { Add_NewTodo, Filter_Todo , Edit_Todo } from './ToDotype'
+import { ADD_TODO, FILTER_TODO , EDIT_TODO ,DELETE_TODO, EDIT_ISDONE } from './ToDotype'
 
 
 
@@ -15,23 +15,33 @@ const initialState ={
 
 const ToDoReducer = (state = initialState, action) => {
     switch (action.type) {
-        case Add_NewTodo:
+        case ADD_TODO:
             return {
+                ...state,
                 listTodo : [...state.listTodo,action.payload]
             }
-            case Filter_Todo:{
+        case FILTER_TODO:{
                 state.listTodo.length < initialState.listTodo.length  && (state = initialState)
-                const todolist=state.listTodo.filter( todo => { return todo.isDone === action.payload});
+                const todolist = action.isDone === 'all' ? state.listTodo : state.listTodo.filter( todo => { return todo.isDone === action.payload});
             return {
+                ...state,
                 listTodo : todolist
             }}
-            case Edit_Todo:
-                const todolist=state.listTodo.map((todo,i) => {return i !== action.payload[0] ?  todo : action.payload[1] })
-                console.log(todolist)
+        case DELETE_TODO:
             return {
-                listTodo : todolist
+                ...state,
+                listTodo : state.listTodo.filter(todo => todo.id !== action.payload && todo )
             }
-            
+        case EDIT_TODO:
+            return {
+                ...state,
+                listTodo : state.listTodo.map((todo) => {return  todo.id === action.payload.id ? {...todo , description : action.payload.descrp } : todo })
+            }
+            case EDIT_ISDONE:
+            return {
+                ...state,
+                listTodo : state.listTodo.map((todo) => {return  todo.id === action.payload ? {...todo , isDone : !todo.isDone } : todo })
+            }
         default : return state
     }
 }

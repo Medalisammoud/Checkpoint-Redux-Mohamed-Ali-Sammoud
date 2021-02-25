@@ -1,45 +1,42 @@
 import React,{ useState } from "react"
-import { connect } from 'react-redux'
-import { EditTodo } from '../../redux/todo/ToDoActions'
+import { useDispatch } from 'react-redux'
+import { EditTodo ,DeleteTodo,EditIsDone } from '../../redux/todo/ToDoActions'
 import editImg from '../../assets/edit.png'
-import editOk from '../../assets/yes.png'
+import editOk from '../../assets/add.png'
+import deletImg from '../../assets/delete.png'
+import doneImg from '../../assets/yes.png'
+import notdoneImg from '../../assets/no.png'
 import './styleTask.css'
 
-const Task = ({todo,i}) => {
-  console.log(todo)
+const Task = ({todo}) => {
+  const dispatch = useDispatch()
     const [show, setShow] = useState(false)
-    const [input, setInput] = useState(todo.description)
-    
-const handleClickEdit = () =>{
-  setShow(!show)
-}
-const handleClickEditOk = () =>{
-  EditTodo([{
-    id:todo.id,
-    description : input,
-    isDone : todo.isDone
-  },i])
-  setShow(!show)
-  setInput(todo.description)
-}
+    const [inputdesc, setInputDesc] = useState(todo.description)
+
+
   return (
     <div className='task'>
-      {show ? <input type='text' value={input} className='input-edit' onChange={(e) => setInput(e.target.value)}/>:
+      {show ? <input type='text' value={inputdesc} className='input-edit' onChange={(e) => setInputDesc(e.target.value)}/>:
       todo.isDone ? <li className='done'>{todo.description}</li> : <li>{todo.description}</li>}
         <div className='image'>
         {show ?
-          <img src={ editOk } alt='editok' onClick={handleClickEditOk}/>
-          :<img src={ editImg } alt='edit' onClick={handleClickEdit}/>}
+          <img src={ editOk } alt='editok' onClick={()=>
+            {
+            dispatch(EditTodo(todo.id,inputdesc))
+            setShow(!show)
+          }}/>
+          :
+          <>
+          <img src={ editImg } alt='edit'onClick={()=>setShow(!show)}/>
+          <img src={ deletImg } alt='delete' onClick={()=> dispatch(DeleteTodo(todo.id))}/>
+          {todo.isDone ? <img src={ doneImg } alt='done' onClick={()=> dispatch(EditIsDone(todo.id))}/> 
+          : <img src={ notdoneImg } alt='done' onClick={()=> dispatch(EditIsDone(todo.id))}/> }
+          </>}
           
         </div>
     </div>
   );
 };
 
-const mapDispatchToProps = (dispatsh) =>{
-  return{
-    EditTodo : obj =>dispatsh(EditTodo(obj)),
-  }
-} 
 
-export default connect(null,mapDispatchToProps)(Task);
+export default Task

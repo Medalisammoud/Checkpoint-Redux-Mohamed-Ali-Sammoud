@@ -1,16 +1,16 @@
 import React from 'react'
 import Task from '../task/Task'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import './styleListTask.css'
 
 const ListTask = (props) => {
-    console.log(props)
+    const listTodo = useSelector(state => state.listTodo)
     return (
         <div className="list-task">
             <h2>Todo List :</h2>
             <ul>
-                {props.listTodo.map((todo,index) =>{
-                    return <Task todo={todo} key={index} i={index}/>
+                {listTodo.map((todo) =>{
+                    return <Task todo={todo} key={todo.id} />
                 })
                     
                 }
@@ -19,10 +19,5 @@ const ListTask = (props) => {
     )
 }
 
-const mapStateToProps = (state)=>{
-    return {
-        listTodo : state.listTodo
-    }
-}
 
-export default connect(mapStateToProps)(ListTask)
+export default ListTask

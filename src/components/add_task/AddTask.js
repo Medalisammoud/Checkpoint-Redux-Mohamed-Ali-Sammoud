@@ -10,12 +10,6 @@ const AddTask = (props) => {
         description : "",
         isDone : false
     })
-    const hundleChangeCheck=(e)=>{
-        setNewToDo({
-            ...newToDo,
-            isDone : e.target.value === 'true' ? !newToDo.isDone : newToDo.isDone
-        });
-    }
     const [description, setdescription] = useState('')
     const handleChangeInput = (e)=>{
     setNewToDo({
@@ -29,9 +23,6 @@ const AddTask = (props) => {
         <div className='addTask'>
             <h2>Add To Do :</h2>
             <Form.Control type="text" placeholder="To Do Description" value={description} onChange={handleChangeInput}/>
-            <br />
-            <Form.Check type="radio" label="Is Done" name="radio" id="radio1" value={true} onChange={hundleChangeCheck} />
-            <Form.Check type="radio" label="Is Not Done"  name="radio" id="radio2" value={false} onChange={hundleChangeCheck}/>
             <Button style={{width:'120px',margin:'30px 0 0 150px'}} variant="light" onClick={()=>{props.AddNewTodo(newToDo);setdescription('')}}>Add ToDo</Button>
         </div>
     )

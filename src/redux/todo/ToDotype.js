@@ -1,3 +1,6 @@
-export const Add_NewTodo = 'Add_NewTodo'
-export const Filter_Todo = 'Filter_Todo'
-export const Edit_Todo = 'Edit_Todo'
+export const ADD_TODO = 'ADD_TODO'
+export const FILTER_TODO = 'FILTER_TODO'
+export const EDIT_TODO = 'EDIT_TODO'
+export const DELETE_TODO = 'DELETE_TODO'
+export const EDIT_ISDONE = 'EDIT_ISDONE'
+
