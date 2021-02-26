@@ -7,13 +7,6 @@ export const AddNewTodo =(newToDo)=>{
     }
 }
 
-export const FilterTodo =(isDone)=>{
-    return {
-        type : FILTER_TODO,
-        payload : isDone
-    }
-}
-
 export const EditTodo = (id,descrp) =>{
     return {
         type : EDIT_TODO,

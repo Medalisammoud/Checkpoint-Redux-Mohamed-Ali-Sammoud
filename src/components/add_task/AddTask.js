@@ -18,7 +18,7 @@ const AddTask = (props) => {
         })
         setdescription(e.target.value);
     }
-    console.log(newToDo)
+    
     return (
         <div className='addTask'>
             <h2>Add To Do :</h2>

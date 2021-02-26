@@ -5,9 +5,9 @@ import { ADD_TODO, FILTER_TODO , EDIT_TODO ,DELETE_TODO, EDIT_ISDONE } from './T
 const initialState ={
     listTodo : [
         {id:Math.random(),description:'Create React Application',isDone:false},
-        {id:Math.random(),description:'Create Component Liste Task',isDone:true},
+        {id:Math.random(),description:'Create Component Liste Task',isDone:false},
         {id:Math.random(),description:'Create Component Task',isDone:false},
-        {id:Math.random(),description:'Create Component Filter',isDone:true},
+        {id:Math.random(),description:'Create Component Filter',isDone:false},
         {id:Math.random(),description:'Create Component Add Task',isDone:false}
     ]
 }
@@ -20,13 +20,6 @@ const ToDoReducer = (state = initialState, action) => {
                 ...state,
                 listTodo : [...state.listTodo,action.payload]
             }
-        case FILTER_TODO:{
-                state.listTodo.length < initialState.listTodo.length  && (state = initialState)
-                const todolist = action.isDone === 'all' ? state.listTodo : state.listTodo.filter( todo => { return todo.isDone === action.payload});
-            return {
-                ...state,
-                listTodo : todolist
-            }}
         case DELETE_TODO:
             return {
                 ...state,
