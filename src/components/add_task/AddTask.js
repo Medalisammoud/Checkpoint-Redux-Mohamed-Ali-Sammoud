@@ -5,16 +5,14 @@ import {AddNewTodo} from '../../redux/todo/ToDoActions'
 import './styleAddTask.css'
 const AddTask = (props) => {
     
-    const [newToDo, setNewToDo] = useState({
-        id : Math.random(),
-        description : "",
-        isDone : false
-    })
+    const [newToDo, setNewToDo] = useState()
     const [description, setdescription] = useState('')
     const handleChangeInput = (e)=>{
-    setNewToDo({
-        ...newToDo,
-        description : e.target.value
+    setNewToDo(
+        {
+            id : Math.random(),
+            description : e.target.value,
+            isDone : false
         })
         setdescription(e.target.value);
     }
